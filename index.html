@@ -51,8 +51,8 @@ button{
 🌱
 </div>
 
-<button onclick="gainXP()">
-+10 XP
+<button onclick="gainXP(this)">
+🚿 お風呂
 </button>
 
 <div id="xp">
@@ -65,7 +65,17 @@ XP：0
 
 let xp=0;
 
-function gainXP(){
+function gainXP(button){
+
+if(button.disabled){
+return;
+}
+
+button.disabled=true;
+
+button.innerHTML="✅ お風呂";
+
+button.style.background="#9ccc65";
 
 xp+=10;
 
