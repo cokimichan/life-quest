@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LIFE QUEST</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+body{
+
+    background:#eef7ee;
+    color:#2f5130;
+    padding:20px;
+}
+
+.container{
+
+    max-width:500px;
+    margin:auto;
+}
+
+h1{
+
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.subtitle{
+
+    text-align:center;
+    color:#666;
+    margin-bottom:24px;
+}
+
+.card{
+
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:18px;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.08);
+}
+
+.section-title{
+
+    font-size:18px;
+    margin-bottom:12px;
+}
+
+.quest{
+
+    width:100%;
+    border:none;
+
+    background:#f3fff3;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.quest:hover{
+
+    transform:scale(1.02);
+}
+
+.quest.done{
+
+    background:#b7f3c2;
+}
+
+#plant{
+
+    font-size:72px;
+
+    text-align:center;
+
+    margin:10px 0;
+}
+
+#xp{
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    color:#2d7c43;
+
+}
+
+#message{
+
+    text-align:center;
+
+    margin-top:8px;
+
+    color:#666;
+}
+
+.stopButton{
+
+    width:100%;
+
+    padding:16px;
+
+    background:#ffb44c;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    margin-top:10px;
+}
+
+.stopList{
+
+    display:none;
+
+    margin-top:15px;
+}
+
+.stopItem{
+
+    width:100%;
+
+    margin-bottom:8px;
+
+    border:none;
+
+    background:#fff5df;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    font-size:17px;
+
+    cursor:pointer;
+}
+
+.small{
+
+    color:#777;
+
+    font-size:14px;
+
+    margin-top:8px;
+
+    text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🌱 LIFE QUEST</h1>
+
+<div class="subtitle">
+
+おかえり😊<br>
+今日はどんな一日だった？
+
+</div>
+
+<div class="card">
+
+<div id="plant">🌱</div>
+
+<div id="xp">
+
+0 XP
+
+</div>
+
+<div id="message">
+
+今日も少しずつ育てよう🌱
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+
+🏠 今日のクエスト
+
+</div>
+
+<button class="quest" data-xp="10">
+🚿 お風呂
+</button>
+
+<button class="quest" data-xp="10">
+🪥 歯磨き
+</button>
+
+<button class="quest" data-xp="10">
+💄 メイク落とす
+</button>
+
+<button class="quest" data-xp="10">
+🍳 料理
+</button>
+
+<button class="quest" data-xp="10">
+🧹 片付け
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="section-title">
+
+🌸 自分を育てる
+
+</div>
+
+<button class="quest" data-xp="20">
+🧘 ピラティス
+</button>
+
+<button class="quest" data-xp="20">
+📖 読書
+</button>
+
+<button class="quest" data-xp="20">
+✏️ 勉強
+</button>
+
+</div>
+
+<div class="card">
+
+<button class="stopButton">
+
+🟠 止まった！！
+
+</button>
+
+<div class="stopList">
+
+<button class="stopItem">
+📱 スマホ
+</button>
+
+<button class="stopItem">
+😵 疲れ
+</button>
+
+<button class="stopItem">
+🤯 考えすぎ
+</button>
+
+<button class="stopItem">
+😴 眠い
+</button>
+
+<button class="stopItem">
+🍚 ご飯後
+</button>
+
+<button class="stopItem">
+😶 その他
+</button>
+
+</div>
+
+<div class="small">
+
+止まったことも前進です🌱
+
+</div>
+
+</div>
+
+<script>
+let xp = Number(localStorage.getItem("lifequest_xp")) || 0;
+
+const xpText = document.getElementById("xp");
+const plant = document.getElementById("plant");
+const message = document.getElementById("message");
+
+const quests = document.querySelectorAll(".quest");
+
+const stopButton = document.querySelector(".stopButton");
+const stopList = document.querySelector(".stopList");
+
+function saveXP(){
+    localStorage.setItem("lifequest_xp", xp);
+}
+
+function updatePlant(){
+
+    xpText.innerText = xp + " XP";
+
+    if(xp < 50){
+
+        plant.innerText="🌱";
+
+    }else if(xp <100){
+
+        plant.innerText="🌿";
+
+    }else if(xp <200){
+
+        plant.innerText="☘️";
+
+    }else if(xp <350){
+
+        plant.innerText="🪴";
+
+    }else if(xp <500){
+
+        plant.innerText="🌳";
+
+    }else{
+
+        plant.innerText="🌸";
+
+    }
+
+}
+
+updatePlant();
+
+quests.forEach((button,index)=>{
+
+    const key="quest_"+index;
+
+    if(localStorage.getItem(key)=="done"){
+
+        button.classList.add("done");
+
+    }
+
+    button.addEventListener("click",()=>{
+
+        if(button.classList.contains("done")){
+
+            return;
+
+        }
+
+        button.classList.add("done");
+
+        localStorage.setItem(key,"done");
+
+        const addXP=Number(button.dataset.xp);
+
+        xp+=addXP;
+
+        saveXP();
+
+        updatePlant();
+
+        message.innerText="+"+addXP+"XP✨";
+
+        setTimeout(()=>{
+
+            message.innerText="今日も少しずつ育てよう🌱";
+
+        },1500);
+
+    });
+
+});
+
+stopButton.addEventListener("click",()=>{
+
+    if(stopList.style.display==="block"){
+
+        stopList.style.display="none";
+
+    }else{
+
+        stopList.style.display="block";
+
+    }
+
+});
+
+const stopItems=document.querySelectorAll(".stopItem");
+
+stopItems.forEach((item)=>{
+
+    item.addEventListener("click",()=>{
+
+        localStorage.setItem("last_stop",item.innerText);
+
+        message.innerText=
+        "今日は『"+item.innerText+"』で止まったね🌱";
+
+        stopList.style.display="none";
+
+    });
+
+});
+
+const lastStop=localStorage.getItem("last_stop");
+
+if(lastStop){
+
+    console.log(lastStop);
+
+}
+// -----------------------------
+// 日付が変わったらクエストをリセット
+// -----------------------------
+
+const today = new Date().toLocaleDateString();
+const savedDay = localStorage.getItem("lifequest_day");
+
+if(savedDay !== today){
+
+    localStorage.setItem("lifequest_day", today);
+
+    quests.forEach((button,index)=>{
+
+        button.classList.remove("done");
+
+        localStorage.removeItem("quest_"+index);
+
+    });
+
+    message.innerText="🌞 新しい一日が始まったよ！";
+
+}
+
+// -----------------------------
+// 最後に止まった敵を表示
+// -----------------------------
+
+if(lastStop){
+
+    const stopInfo=document.createElement("div");
+
+    stopInfo.style.marginTop="18px";
+    stopInfo.style.textAlign="center";
+    stopInfo.style.color="#666";
+    stopInfo.style.fontSize="15px";
+
+    stopInfo.innerHTML=
+    "👾 今日の敵：<b>"+lastStop+"</b>";
+
+    document.querySelector(".container")
+        .appendChild(stopInfo);
+
+}
+
+// -----------------------------
+// 今日のひとこと
+// -----------------------------
+
+const comments=[
+
+"🌱 今日も少しずつ育てよう！",
+
+"🍀 一歩進めば十分！",
+
+"😊 おかえり！",
+
+"🌿 今日も会えてうれしい！",
+
+"✨ 小さな積み重ねが未来を作る！"
+
+];
+
+if(message.innerText==="今日も少しずつ育てよう🌱"){
+
+    const random=Math.floor(Math.random()*comments.length);
+
+    message.innerText=comments[random];
+
+}
+
+// -----------------------------
+// JavaScript終了
+// -----------------------------
+</script>
+
+</body>
+</html>
