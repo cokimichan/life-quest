@@ -60,36 +60,36 @@ button{
 
 <div class="quest-list">
 
-<button>
+<button onclick="completeQuest(this)">
 🚿 お風呂
 </button>
 
-<button>
+<button onclick="completeQuest(this)">
 🪥 歯磨き
 </button>
 
-<button>
+<button onclick="completeQuest(this)">
 💄 メイク落とす
 </button>
 
-<button>
+<button onclick="completeQuest(this)">
 🧘 ピラティス
 </button>
 
-<button>
+<button onclick="completeQuest(this)">
 📚 読書
 </button>
 
-<button>
-🧹 片付け
+<button onclick="completeQuest(this)"> 
+🧹 片付け 
 </button>
 
-<button>
-🍳 料理
+<button onclick="completeQuest(this)"> 
+🍳 料理 
 </button>
 
-<button>
-✏️ 勉強
+<button onclick="completeQuest(this)"> 
+✏️ 勉強 
 </button>
 
 </div>
@@ -129,7 +129,22 @@ document.getElementById("plant").innerHTML="🪴";
 
 }
 
-</script>
+function completeQuest(button){
+
+    if(button.classList.contains("completed")){
+        return;
+    }
+
+    button.classList.add("completed");
+
+    button.innerHTML = "✅ " + button.innerHTML;
+
+}</script>
 
 </body>
 </html>
+
+.completed{
+    background:#A5D6A7;
+    color:#1B5E20;
+}
