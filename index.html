@@ -24,12 +24,17 @@ body{
 }
 
 button{
+    display:block;
+    width:100%;
+    max-width:320px;
+    margin:12px auto;
     background:#4caf50;
     color:white;
     border:none;
     border-radius:16px;
-    padding:15px 25px;
+    padding:15px;
     font-size:20px;
+    cursor:pointer;
 }
 
 #xp{
@@ -51,9 +56,43 @@ button{
 🌱
 </div>
 
-<button onclick="gainXP(this)">
+<h2>📋 今日のクエスト</h2>
+
+<div class="quest-list">
+
+<button>
 🚿 お風呂
 </button>
+
+<button>
+🪥 歯磨き
+</button>
+
+<button>
+💄 メイク落とす
+</button>
+
+<button>
+🧘 ピラティス
+</button>
+
+<button>
+📚 読書
+</button>
+
+<button>
+🧹 片付け
+</button>
+
+<button>
+🍳 料理
+</button>
+
+<button>
+✏️ 勉強
+</button>
+
+</div>
 
 <div id="xp">
 XP：0
