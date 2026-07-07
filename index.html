@@ -106,25 +106,6 @@ let xp=0;
 const xpDisplay = document.getElementById("xp");
 const plant = document.getElementById("plant");
 
-button.disabled=true;
-
-button.innerHTML="✅ お風呂";
-
-button.style.background="#9ccc65";
-
-xp+=10;
-
-document.getElementById("xp").innerHTML="XP："+xp;
-
-if(xp>=100){
-document.getElementById("plant").innerHTML="🌳";
-}
-else if(xp>=50){
-document.getElementById("plant").innerHTML="🪴";
-}
-
-}
-
 function completeQuest(button){
 
     if(button.classList.contains("completed")){
@@ -133,11 +114,15 @@ function completeQuest(button){
 
     button.classList.add("completed");
 
+    button.disabled = true;
+
     button.innerHTML = "✅ " + button.innerHTML;
+
+    button.style.background = "#9ccc65";
 
     xp += 10;
 
-    xpDisplay.innerHTML = "XP : " + xp;
+    xpDisplay.innerHTML = "XP：" + xp;
 
     if(xp >= 100){
         plant.innerHTML = "🌳";
@@ -146,3 +131,7 @@ function completeQuest(button){
     }
 
 }
+
+</script>
+</body>
+</html>    
