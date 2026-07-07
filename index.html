@@ -103,6 +103,8 @@ XP：0
 <script>
 
 let xp=0;
+const xpDisplay = document.getElementById("xp");
+const plant = document.getElementById("plant");
 
 function gainXP(button){
 
@@ -139,12 +141,14 @@ function completeQuest(button){
 
     button.innerHTML = "✅ " + button.innerHTML;
 
-}</script>
+    xp += 10;
 
-</body>
-</html>
+    xpDisplay.innerHTML = "XP : " + xp;
 
-.completed{
-    background:#A5D6A7;
-    color:#1B5E20;
+    if(xp >= 100){
+        plant.innerHTML = "🌳";
+    }else if(xp >= 50){
+        plant.innerHTML = "🪴";
+    }
+
 }
