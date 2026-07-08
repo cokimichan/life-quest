@@ -100,18 +100,18 @@ XP：0
 
 </div>
 
-<script>
+<const xpDisplay = document.getElementById("xp");
+const plant = document.getElementById("plant");
 
 let xp = Number(localStorage.getItem("xp")) || 0;
-    xpDisplay.innerHTML = "XP：" + xp;
+
+xpDisplay.innerHTML = "XP：" + xp;
 
 if(xp >= 100){
     plant.innerHTML = "🌳";
 }else if(xp >= 50){
     plant.innerHTML = "🪴";
 }
-const xpDisplay = document.getElementById("xp");
-const plant = document.getElementById("plant");
 
 function completeQuest(button){
 
