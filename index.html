@@ -105,6 +105,21 @@ const plant = document.getElementById("plant");
 
 let xp = Number(localStorage.getItem("xp")) || 0;
 
+xpDisplay.innerHTML = "XP：" + ...
+
+<div id="xp">
+XP：0
+</div>
+
+</div>
+
+<script>
+
+const xpDisplay = document.getElementById("xp");
+const plant = document.getElementById("plant");
+
+let xp = Number(localStorage.getItem("xp")) || 0;
+
 xpDisplay.innerHTML = "XP：" + xp;
 
 if(xp >= 100){
@@ -120,11 +135,8 @@ function completeQuest(button){
     }
 
     button.classList.add("completed");
-
     button.disabled = true;
-
     button.innerHTML = "✅ " + button.innerHTML;
-
     button.style.background = "#9ccc65";
 
     xp += 10;
@@ -141,5 +153,6 @@ function completeQuest(button){
 }
 
 </script>
+
 </body>
-</html>    
+</html>
