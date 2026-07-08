@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LIFE QUEST</title>
 
 <style>
+
 body{
     margin:0;
     background:#e8f5e9;
@@ -18,32 +22,70 @@ body{
     padding:40px 20px;
 }
 
+h1{
+    margin-bottom:10px;
+}
+
 .plant{
     font-size:80px;
-    margin:30px 0;
+    margin:25px 0;
+    transition:0.3s;
+}
+
+.quest-list{
+    margin-top:25px;
 }
 
 button{
+
     display:block;
     width:100%;
     max-width:320px;
+
     margin:12px auto;
-    background:#4caf50;
-    color:white;
+
+    padding:15px;
+
     border:none;
     border-radius:16px;
-    padding:15px;
+
+    background:#4caf50;
+    color:white;
+
     font-size:20px;
+
     cursor:pointer;
+
+    transition:0.2s;
+}
+
+button:hover{
+
+    transform:scale(1.02);
+
+}
+
+.completed{
+
+    background:#A5D6A7;
+    color:#1B5E20;
+
 }
 
 #xp{
-    font-size:28px;
-    margin-top:20px;
-}
-</style>
-</head>
 
+    font-size:28px;
+
+    margin-top:25px;
+
+    font-weight:bold;
+
+}
+
+</style>
+
+</head>
+    
 <body>
 
 <div class="container">
@@ -80,32 +122,19 @@ button{
 📚 読書
 </button>
 
-<button onclick="completeQuest(this)"> 
-🧹 片付け 
+<button onclick="completeQuest(this)">
+🧹 片付け
 </button>
 
-<button onclick="completeQuest(this)"> 
-🍳 料理 
+<button onclick="completeQuest(this)">
+🍳 料理
 </button>
 
-<button onclick="completeQuest(this)"> 
-✏️ 勉強 
+<button onclick="completeQuest(this)">
+✏️ 勉強
 </button>
 
 </div>
-
-<div id="xp">
-XP：0
-</div>
-
-</div>
-
-<const xpDisplay = document.getElementById("xp");
-const plant = document.getElementById("plant");
-
-let xp = Number(localStorage.getItem("xp")) || 0;
-
-xpDisplay.innerHTML = "XP：" + ...
 
 <div id="xp">
 XP：0
@@ -115,18 +144,31 @@ XP：0
 
 <script>
 
+// =====================
+// 要素を取得
+// =====================
+
 const xpDisplay = document.getElementById("xp");
 const plant = document.getElementById("plant");
 
+
+// =====================
+// データ読込
+// =====================
+
 let xp = Number(localStorage.getItem("xp")) || 0;
 
-xpDisplay.innerHTML = "XP：" + xp;
 
-if(xp >= 100){
-    plant.innerHTML = "🌳";
-}else if(xp >= 50){
-    plant.innerHTML = "🪴";
-}
+// =====================
+// 初期表示
+// =====================
+
+updateUI();
+
+
+// =====================
+// クエスト完了
+// =====================
 
 function completeQuest(button){
 
@@ -135,19 +177,40 @@ function completeQuest(button){
     }
 
     button.classList.add("completed");
+
     button.disabled = true;
+
     button.innerHTML = "✅ " + button.innerHTML;
-    button.style.background = "#9ccc65";
 
     xp += 10;
+
     localStorage.setItem("xp", xp);
+
+    updateUI();
+
+}
+
+
+// =====================
+// 画面更新
+// =====================
+
+function updateUI(){
 
     xpDisplay.innerHTML = "XP：" + xp;
 
     if(xp >= 100){
+
         plant.innerHTML = "🌳";
+
     }else if(xp >= 50){
+
         plant.innerHTML = "🪴";
+
+    }else{
+
+        plant.innerHTML = "🌱";
+
     }
 
 }
