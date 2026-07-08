@@ -32,3 +32,17 @@
 - 植物の成長を細かくする
 - +10XPアニメーション
 - データ保存(localStorage)
+
+# DEVLOG
+
+## Day1
+GitHub公開
+
+## Day2
+複数クエスト完成
+
+## Day3
+XP保存(localStorage)
+
+## Day4
+コード全面リファクタリング
