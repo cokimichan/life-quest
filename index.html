@@ -102,7 +102,14 @@ XP：0
 
 <script>
 
-let xp=0;
+let xp = Number(localStorage.getItem("xp")) || 0;
+    xpDisplay.innerHTML = "XP：" + xp;
+
+if(xp >= 100){
+    plant.innerHTML = "🌳";
+}else if(xp >= 50){
+    plant.innerHTML = "🪴";
+}
 const xpDisplay = document.getElementById("xp");
 const plant = document.getElementById("plant");
 
@@ -121,6 +128,7 @@ function completeQuest(button){
     button.style.background = "#9ccc65";
 
     xp += 10;
+    localStorage.setItem("xp", xp);
 
     xpDisplay.innerHTML = "XP：" + xp;
 
