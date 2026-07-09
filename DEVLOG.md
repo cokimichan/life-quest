@@ -33,8 +33,6 @@
 - +10XPアニメーション
 - データ保存(localStorage)
 
-# DEVLOG
-
 ## Day4（2026-07-09）
 
 ### 今日やったこと
@@ -69,3 +67,20 @@ JavaScript
 毎日0時にチェックをリセット
 
 ログ保存開始
+
+# 📓 DEVLOG
+
+## Day5（2026-07-09）
+
+### やったこと
+- localStorageの実装
+- GitHub Actionsの確認
+
+### 詰まったこと
+- GitHub PagesのInternal Server Error
+
+### 学び
+- コードだけでなく環境も疑う
+
+### 次回予定
+- チェック状態の復元
