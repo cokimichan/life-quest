@@ -158,6 +158,18 @@ const plant = document.getElementById("plant");
 
 let xp = Number(localStorage.getItem("xp")) || 0;
 
+// 今日の日付を取得
+const today = new Date().toLocaleDateString("sv-SE");
+
+// 前回アプリを開いた日
+const savedDate = localStorage.getItem("today");
+
+// 初めて開く、または日付が変わっていたら保存
+if(savedDate !== today){
+
+    localStorage.setItem("today", today);
+
+}
 
 // =====================
 // 初期表示
@@ -182,6 +194,9 @@ function completeQuest(button){
 
     button.innerHTML = "✅ " + button.innerHTML;
 
+    // チェック状態を保存
+localStorage.setItem(button.innerText, "done");
+    
     xp += 10;
 
     localStorage.setItem("xp", xp);
