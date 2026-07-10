@@ -164,6 +164,14 @@ const today = new Date().toLocaleDateString("sv-SE");
 // 前回アプリを開いた日
 const savedDate = localStorage.getItem("today");
 
+    if(savedDate !== today){
+
+    localStorage.clear();
+
+    localStorage.setItem("today", today);
+
+}
+
 // 初めて開く、または日付が変わっていたら保存
 if(savedDate !== today){
 
