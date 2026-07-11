@@ -151,12 +151,25 @@ XP：0
 const xpDisplay = document.getElementById("xp");
 const plant = document.getElementById("plant");
 
-
 // =====================
-// データ読込
+// 保存データ
 // =====================
 
-let xp = Number(localStorage.getItem("xp")) || 0;
+let gameData = JSON.parse(localStorage.getItem("gameData"));
+
+if(gameData === null){
+
+    gameData = {
+
+        xp: 0,
+
+        today: new Date().toLocaleDateString("sv-SE"),
+
+        quests: {}
+
+    };
+
+}
 
 // 今日の日付を取得
 const today = new Date().toLocaleDateString("sv-SE");
@@ -205,11 +218,11 @@ function completeQuest(button){
     // チェック状態を保存
 localStorage.setItem(button.innerText, "done");
     
-    xp += 10;
+    gameData.xp += 10;
 
-    localStorage.setItem("xp", xp);
+localStorage.setItem("gameData", JSON.stringify(gameData));
 
-    updateUI();
+updateUI();
 
 }
 
@@ -220,13 +233,13 @@ localStorage.setItem(button.innerText, "done");
 
 function updateUI(){
 
-    xpDisplay.innerHTML = "XP：" + xp;
+    xpDisplay.innerHTML = "XP：" + gameData.xp;
 
-    if(xp >= 100){
+    if(gameData.xp >= 100){
 
         plant.innerHTML = "🌳";
 
-    }else if(xp >= 50){
+    }else if(gameData.xp >= 50){
 
         plant.innerHTML = "🪴";
 
